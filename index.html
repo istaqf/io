@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waterfall Form</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    
+    body {
+        height: 100vh;
+        background: url('https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=1920') no-repeat center/cover;
+        background-attachment: fixed; /* স্ক্রল করলেও bg থাকবে */
+        overflow-y: auto; /* স্ক্রল করার জন্য */
+    }
+
+    /* LOGIN PAGE */
+    .center-screen {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .glass-box {
+        width: 350px;
+        padding: 40px 30px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+    }
+    .glass-box h1 { color: white; font-size: 40px; margin-bottom: 30px; }
+    .input-group { margin-bottom: 25px; }
+    .input-group input {
+        width: 100%; padding: 10px 5px; background: transparent;
+        border: none; border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+        outline: none; color: white; font-size: 16px;
+    }
+    .input-group input::placeholder { color: rgba(255, 255, 255, 0.7); }
+    .btn {
+        width: 100%; padding: 12px; background: white; border: none;
+        border-radius: 10px; color: #333; font-size: 18px; font-weight: 700;
+        cursor: pointer;
+    }
+
+    /* WELCOME PAGE + FORM */
+    .welcome-page {
+        display: none;
+        padding: 50px 20px;
+        text-align: center;
+        color: white;
+    }
+    
+    .welcome-text {
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(10px);
+        padding: 40px 30px;
+        border-radius: 20px;
+        max-width: 700px;
+        margin: 0 auto 40px auto; /* মাঝখানে */
+    }
+    .welcome-text h1 { font-size: 3vw; margin-bottom: 10px; text-shadow: 0 0 20px #00ccff; }
+    .welcome-text p { font-size: 18px; color: #ddd; }
+
+    /* তোমার FORM */
+    .my-form {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        padding: 30px;
+        border-radius: 20px;
+        max-width: 500px;
+        margin: 0 auto; /* মাঝখানে */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .my-form h2 { margin-bottom: 20px; color: #00ccff; }
+    .my-form input, .my-form textarea {
+        width: 100%; padding: 12px; margin-bottom: 15px;
+        background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 8px; color: white; font-size: 16px;
+    }
+    .my-form input::placeholder, .my-form textarea::placeholder { color: #aaa; }
+    .my-form button {
+        width: 100%; padding: 12px; background: #00ccff; border: none;
+        border-radius: 8px; color: black; font-size: 18px; font-weight: 700; cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+    <!-- 1. LOGIN PAGE -->
+    <div class="center-screen" id="loginPage">
+        <div class="glass-box">
+            <h1>Login</h1>
+            <div class="input-group">
+                <input type="text" id="nameInput" placeholder="Name" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="passInput" placeholder="password" required>
+            </div>
+            <button class="btn" onclick="login()">Enter</button>
+        </div>
+    </div>
+
+    <!-- 2. WELCOME PAGE + FORM -->
+    <div class="welcome-page" id="welcomePage">
+        <div class="welcome-text">
+            <h1 id="welcomeName">Welcome!</h1>
+            <p>You have successfully entered the Secret Waterfall</p>
+        </div>
+
+        <!-- এখানে তুমি তোমার ফর্ম বসাবে -->
+        <div class="my-form">
+            <h2></h2>
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Your Email">
+            <textarea rows="4" placeholder="Your Message"></textarea>
+            <button onclick="alert('Form Submitted!')">Submit</button>
+        </div>
+    </div>
+
+<script>
+    function login() {
+        let name = document.getElementById('nameInput').value;
+        let pass = document.getElementById('passInput').value;
+        if(name === "" || pass === "") { alert("Please enter Name and Password"); return; }
+        
+        document.getElementById('welcomeName').innerText = "Welcome, " + name + "!";
+        document.getElementById('loginPage').style.display = "none";
+        document.getElementById('welcomePage').style.display = "block";
+        window.scrollTo(0,0); // উপরে নিয়ে যাবে
+    }
+</script>
+
+</body>
+</html>

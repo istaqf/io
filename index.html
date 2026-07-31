@@ -10,10 +10,11 @@
     body {
         height: 100vh;
         background: url('https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=1920') no-repeat center/cover;
-        background-attachment: fixed;
-        overflow-y: auto;
+        background-attachment: fixed; /* স্ক্রল করলেও bg থাকবে */
+        overflow-y: auto; /* স্ক্রল করার জন্য */
     }
 
+    /* LOGIN PAGE */
     .center-screen {
         height: 100vh;
         display: flex;
@@ -43,35 +44,6 @@
         cursor: pointer;
     }
 
-    /* PRANK PAGE */
-    .prank-page {
-        display: none;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: black;
-        flex-direction: column;
-        text-align: center;
-        color: white;
-    }
-    .prank-page img {
-        width: 400px;
-        max-width: 90%;
-        animation: shake 0.3s infinite;
-    }
-    .prank-page h1 {
-        font-size: 40px;
-        margin-top: 20px;
-        color: red;
-        text-shadow: 0 0 10px red;
-    }
-    @keyframes shake {
-        0% { transform: translate(1px, 1px) rotate(0deg); }
-        50% { transform: translate(-1px, -2px) rotate(-1deg); }
-        100% { transform: translate(1px, 1px) rotate(1deg); }
-    }
-
     /* WELCOME PAGE + FORM */
     .welcome-page {
         display: none;
@@ -86,18 +58,19 @@
         padding: 40px 30px;
         border-radius: 20px;
         max-width: 700px;
-        margin: 0 auto 40px auto;
+        margin: 0 auto 40px auto; /* মাঝখানে */
     }
     .welcome-text h1 { font-size: 3vw; margin-bottom: 10px; text-shadow: 0 0 20px #00ccff; }
     .welcome-text p { font-size: 18px; color: #ddd; }
 
+    /* তোমার FORM */
     .my-form {
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(15px);
         padding: 30px;
         border-radius: 20px;
         max-width: 500px;
-        margin: 0 auto;
+        margin: 0 auto; /* মাঝখানে */
         border: 1px solid rgba(255, 255, 255, 0.2);
     }
     .my-form h2 { margin-bottom: 20px; color: #00ccff; }
@@ -129,21 +102,16 @@
         </div>
     </div>
 
-    <!-- 2. PRANK PAGE - 2 সেকেন্ড দেখাবে -->
-    <div class="prank-page" id="prankPage">
-        <img src="file:///storage/emulated/0/Android/data/com.teejay.trebedit/files/TrebEdit user files/video/1c8fb9feaf1267dec6cfd42660f5e14d.jpg" alt="monkey">
-        <h1>BOO! GOTCHA 😈</h1>
-    </div>
-
-    <!-- 3. WELCOME PAGE + FORM -->
+    <!-- 2. WELCOME PAGE + FORM -->
     <div class="welcome-page" id="welcomePage">
         <div class="welcome-text">
             <h1 id="welcomeName">Welcome!</h1>
             <p>You have successfully entered the Secret Waterfall</p>
         </div>
 
+        <!-- এখানে তুমি তোমার ফর্ম বসাবে -->
         <div class="my-form">
-            <h2>Contact Form</h2>
+            <h2></h2>
             <input type="text" placeholder="Your Name">
             <input type="email" placeholder="Your Email">
             <textarea rows="4" placeholder="Your Message"></textarea>
@@ -157,17 +125,10 @@
         let pass = document.getElementById('passInput').value;
         if(name === "" || pass === "") { alert("Please enter Name and Password"); return; }
         
-        // আগে prank page দেখাও
+        document.getElementById('welcomeName').innerText = "Welcome, " + name + "!";
         document.getElementById('loginPage').style.display = "none";
-        document.getElementById('prankPage').style.display = "flex";
-        
-        // 2 সেকেন্ড পর real page দেখাও
-        setTimeout(() => {
-            document.getElementById('welcomeName').innerText = "Welcome, " + name + "!";
-            document.getElementById('prankPage').style.display = "none";
-            document.getElementById('welcomePage').style.display = "block";
-            window.scrollTo(0,0);
-        }, 2000);
+        document.getElementById('welcomePage').style.display = "block";
+        window.scrollTo(0,0); // উপরে নিয়ে যাবে
     }
 </script>
 
